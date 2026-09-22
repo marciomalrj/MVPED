@@ -1,4 +1,7 @@
 # MVP — Engenharia de Dados
+**Nome:** Márcio Miranda da Silva  
+**Matrícula:** 4052025002387  
+**Data:** 20/09/2026 
 
 ## Pipeline de Dados de Vendas com Databricks, Spark e Arquitetura Bronze, Silver e Gold
 
