@@ -308,32 +308,61 @@ fato_vendas = (
     )
 )
 ```
+---
+
+## 3.6 Catálogo — `bronze_vendas`
+
+A tabela `bronze_vendas` representa os dados persistidos próximos de sua forma original, antes da aplicação das transformações de qualidade e enriquecimento realizadas na camada Silver.
+
+Nesta etapa, os tipos refletem a estrutura recebida durante a ingestão. A única adequação técnica realizada para possibilitar a persistência em Delta foi a alteração do nome da coluna `Unnamed: 10` para `Unnamed_10`, sem modificação de seu conteúdo.
+
+| Atributo        | Tipo   | Descrição                                      | Domínio / Faixa observada                                                                                                      |
+| --------------- | ------ | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `DataVenda`     | string | Data em que ocorreu a venda                    | Datas representadas originalmente no formato `dd/MM/yyyy`                                                                      |
+| `Produto`       | string | Nome do produto comercializado                 | Produtos existentes na base                                                                                                    |
+| `Categoria`     | string | Categoria comercial do produto                 | Categorias existentes na base                                                                                                  |
+| `PrecoUnitario` | string | Preço unitário de venda                        | Valores monetários originalmente representados como texto                                                                      |
+| `CustoUnitario` | string | Custo unitário do produto                      | Valores monetários originalmente representados como texto                                                                      |
+| `Marca`         | string | Marca do produto                               | Marcas existentes na base                                                                                                      |
+| `Qtd_Vendida`   | double | Quantidade de unidades vendidas                | Valores observados entre 1 e 5                                                                                                 |
+| `NomeCliente`   | string | Nome do cliente associado à venda              | Clientes existentes na base                                                                                                    |
+| `Pais`          | string | País associado à venda                         | Países existentes na base                                                                                                      |
+| `Continente`    | string | Continente associado à venda                   | África, América do Norte, América do Sul, Ásia, Austrália e Europa, incluindo ocorrências originalmente com espaços excedentes |
+| `Unnamed_10`    | string | Coluna sem conteúdo útil identificada na fonte | Sem conteúdo relevante                                                                                                         |
+
+A análise da camada Bronze evidenciou que alguns tipos de dados não correspondiam semanticamente aos atributos representados. `DataVenda`, por exemplo, foi recebida como `string`, enquanto `PrecoUnitario` e `CustoUnitario` também necessitavam de conversão para tipos numéricos. Essas adequações foram realizadas posteriormente na camada Silver.
+
 
 ---
 
-## 3.6 Catálogo — `silver_vendas`
+## 3.7 Catálogo — `silver_vendas`
 
-A `silver_vendas` representa os dados tratados e preparados para alimentar a camada Gold.
+A `silver_vendas` representa os dados tratados, padronizados e enriquecidos, preparados para alimentar a camada Gold. Os tipos apresentados a seguir correspondem ao schema resultante após as transformações realizadas no pipeline.
 
-| Atributo        | Tipo    | Descrição              | Domínio / Faixa observada                                          |
-| --------------- | ------- | ---------------------- | ------------------------------------------------------------------ |
-| `DataVenda`     | date    | Data da venda          | Período entre 2017 e 2019                                          |
-| `Produto`       | string  | Produto comercializado | Produtos existentes na base                                        |
-| `Categoria`     | string  | Categoria do produto   | Categorias existentes na base                                      |
-| `PrecoUnitario` | double  | Preço unitário         | R$ 4,98 a R$ 1.650,00                                              |
-| `CustoUnitario` | double  | Custo unitário         | R$ 2,54 a R$ 546,68                                                |
-| `Marca`         | string  | Marca do produto       | Marcas existentes na base                                          |
-| `Qtd_Vendida`   | integer | Quantidade vendida     | 1 a 5                                                              |
-| `NomeCliente`   | string  | Nome do cliente        | Clientes existentes na base                                        |
-| `Pais`          | string  | País da venda          | Países existentes na base                                          |
-| `Continente`    | string  | Continente da venda    | África, América do Norte, América do Sul, Ásia, Austrália e Europa |
-| `Faturamento`   | double  | Receita da venda       | R$ 4,98 a R$ 8.250,00                                              |
-| `CustoTotal`    | double  | Custo total            | R$ 2,54 a R$ 2.733,40                                              |
-| `Lucro`         | double  | Resultado financeiro   | R$ 2,44 a R$ 5.516,60                                              |
+| Atributo        | Tipo    | Descrição              | Domínio / Faixa observada                                                                                                                                                         |
+| --------------- | ------- | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `DataVenda`     | date    | Data da venda          | Período entre 2017 e 2019                                                                                                                                                         |
+| `Produto`       | string  | Produto comercializado | Domínio categórico composto pelos produtos existentes no dataset                                                                                                                  |
+| `Categoria`     | string  | Categoria do produto   | Categorias comerciais presentes no dataset, como Sistema de Som, Acessórios para Câmeras, VCD & DVD, Games, Jogos de Tabuleiro, Monitores, Water Heaters, Cafeteira, entre outras |
+| `PrecoUnitario` | double  | Preço unitário         | R$ 4,98 a R$ 1.650,00                                                                                                                                                             |
+| `CustoUnitario` | double  | Custo unitário         | R$ 2,54 a R$ 546,68                                                                                                                                                               |
+| `Marca`         | string  | Marca do produto       | Domínio categórico composto pelas marcas existentes no dataset                                                                                                                    |
+| `Qtd_Vendida`   | integer | Quantidade vendida     | 1 a 5                                                                                                                                                                             |
+| `NomeCliente`   | string  | Nome do cliente        | Domínio categórico composto pelos clientes existentes no dataset                                                                                                                  |
+| `Pais`          | string  | País da venda          | Domínio categórico composto pelos países existentes no dataset                                                                                                                    |
+| `Continente`    | string  | Continente da venda    | África, América do Norte, América do Sul, Ásia, Austrália e Europa                                                                                                                |
+| `Faturamento`   | double  | Receita da venda       | R$ 4,98 a R$ 8.250,00                                                                                                                                                             |
+| `CustoTotal`    | double  | Custo total            | R$ 2,54 a R$ 2.733,40                                                                                                                                                             |
+| `Lucro`         | double  | Resultado financeiro   | R$ 2,44 a R$ 5.516,60                                                                                                                                                             |
+
+Os atributos categóricos com grande cardinalidade, como `Produto`, `Marca`, `NomeCliente` e `Pais`, são descritos pelo conjunto de valores existentes no dataset, evitando a reprodução de listas extensas no catálogo. Para atributos com domínio reduzido e relevante às análises, como `Continente`, os possíveis valores são apresentados explicitamente.
 
 ---
 
-## 3.7 Catálogo — `gold_dim_produto`
+
+---
+
+## 3.8 Catálogo — `gold_dim_produto`
 
 | Atributo     | Tipo    | Descrição        | Linhagem                  |
 | ------------ | ------- | ---------------- | ------------------------- |
@@ -344,7 +373,7 @@ A `silver_vendas` representa os dados tratados e preparados para alimentar a cam
 
 ---
 
-## 3.8 Catálogo — `gold_dim_tempo`
+## 3.9 Catálogo — `gold_dim_tempo`
 
 | Atributo    | Tipo    | Descrição        | Domínio                  | Linhagem                  |
 | ----------- | ------- | ---------------- | ------------------------ | ------------------------- |
@@ -356,7 +385,7 @@ A `silver_vendas` representa os dados tratados e preparados para alimentar a cam
 
 ---
 
-## 3.9 Catálogo — `gold_dim_localizacao`
+## 3.10 Catálogo — `gold_dim_localizacao`
 
 | Atributo         | Tipo    | Descrição        | Domínio                                                            | Linhagem                   |
 | ---------------- | ------- | ---------------- | ------------------------------------------------------------------ | -------------------------- |
@@ -366,7 +395,7 @@ A `silver_vendas` representa os dados tratados e preparados para alimentar a cam
 
 ---
 
-## 3.10 Catálogo — `gold_fato_vendas`
+## 3.11 Catálogo — `gold_fato_vendas`
 
 | Atributo         | Tipo    | Descrição            | Domínio / Faixa observada     | Linhagem             |
 | ---------------- | ------- | -------------------- | ----------------------------- | -------------------- |
@@ -382,7 +411,7 @@ A `silver_vendas` representa os dados tratados e preparados para alimentar a cam
 
 ---
 
-## 3.11 Linhagem
+## 3.12 Linhagem
 
 A linhagem principal é:
 
