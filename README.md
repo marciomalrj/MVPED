@@ -162,7 +162,8 @@ gold_dim_tempo -------- gold_fato_vendas -------- gold_dim_localizacao
 ```
 
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/92cf604e-bea9-47ac-9f79-cb88deefd089" />
-Modelo dimensional / MER da camada Gold**
+
+Modelo dimensional / MER da camada Gold
 
 ---
 
@@ -388,7 +389,8 @@ A linhagem principal é:
 
 O atributo `NomeCliente` permanece disponível na Silver, mas não foi incorporado à Gold, pois as perguntas definidas neste MVP não exigem análises no nível do cliente.
 
-<img width="250" height="227" alt="image" src="https://github.com/user-attachments/assets/b8a64072-c2de-462a-b47b-f77314d4cf0f" /> 
+<img width="250" height="227" alt="image" src="https://github.com/user-attachments/assets/b8a64072-c2de-462a-b47b-f77314d4cf0f" />
+
 Catálogo/schema das tabelas no Databricks
 
 ---
