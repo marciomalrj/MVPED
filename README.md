@@ -127,13 +127,13 @@ print(
 ```
 
 <img width="253" height="215" alt="image" src="https://github.com/user-attachments/assets/625ba114-c365-43c5-828b-3e37d28c1f62" />
- :Persistência da tabela `bronze_vendas` no Databricks**
+Persistência da tabela `bronze_vendas` no Databricks
 
 O código completo está disponível no notebook:
 
 `MVP - Engenharia de Dados.ipynb`
 
-**Repositório:** `[<LINK_DO_REPOSITORIO_GITHUB>](https://github.com/marciomalrj/MVPED/)`
+**Repositório:** `https://github.com/marciomalrj/MVPED/`
 
 ---
 
@@ -161,7 +161,8 @@ A tabela fato concentra as métricas quantitativas e financeiras, enquanto as di
 gold_dim_tempo -------- gold_fato_vendas -------- gold_dim_localizacao
 ```
 
-📷 **IMAGEM AQUI — Modelo dimensional / MER da camada Gold**
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/92cf604e-bea9-47ac-9f79-cb88deefd089" />
+Modelo dimensional / MER da camada Gold**
 
 ---
 
@@ -387,7 +388,8 @@ A linhagem principal é:
 
 O atributo `NomeCliente` permanece disponível na Silver, mas não foi incorporado à Gold, pois as perguntas definidas neste MVP não exigem análises no nível do cliente.
 
-📷 **IMAGEM AQUI — Catálogo/schema das tabelas no Databricks**
+<img width="250" height="227" alt="image" src="https://github.com/user-attachments/assets/b8a64072-c2de-462a-b47b-f77314d4cf0f" /> 
+Catálogo/schema das tabelas no Databricks
 
 ---
 
