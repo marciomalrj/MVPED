@@ -127,6 +127,7 @@ print(
 ```
 
 <img width="253" height="215" alt="image" src="https://github.com/user-attachments/assets/625ba114-c365-43c5-828b-3e37d28c1f62" />
+
 Persistência da tabela `bronze_vendas` no Databricks
 
 O código completo está disponível no notebook:
@@ -155,13 +156,13 @@ O modelo é composto por:
 A tabela fato concentra as métricas quantitativas e financeiras, enquanto as dimensões fornecem os atributos descritivos necessários para as análises.
 
 ```text
-                         gold_dim_produto
+                         gold_dim_tempo
                                 |
                                 |
-gold_dim_tempo -------- gold_fato_vendas -------- gold_dim_localizacao
+gold_dim_produto -------- gold_fato_vendas -------- gold_dim_localizacao
 ```
 
-<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/92cf604e-bea9-47ac-9f79-cb88deefd089" />
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/4fc1c33e-9ac8-442a-8e92-3ba47058e5cf" />
 
 Modelo dimensional / MER da camada Gold
 
@@ -587,7 +588,10 @@ display(
 )
 ```
 
-📷 **IMAGEM AQUI — Tabelas persistidas no Databricks**
+<img width="226" height="228" alt="image" src="https://github.com/user-attachments/assets/05a8f6d5-6255-4521-b64e-363e90ef30d2" />
+
+
+Tabelas persistidas no Databricks**
 
 > O ideal é mostrar `bronze_vendas`, `silver_vendas`, `gold_dim_produto`, `gold_dim_tempo`, `gold_dim_localizacao` e `gold_fato_vendas`.
 
@@ -638,10 +642,6 @@ A investigação identificou registros completamente idênticos em todos os atri
 
 Os principais códigos utilizados nos tratamentos estão documentados na seção **Pipeline de Dados**, e as células completas de investigação e validação permanecem disponíveis no notebook.
 
-📷 **IMAGEM AQUI — Análise/validação da qualidade dos dados**
-
-> Screenshot de uma das validações da Bronze/Silver mostrando os problemas encontrados e/ou o resultado após os tratamentos.
-
 ---
 
 # 6. Análise de Dados — Etapa 4.5
@@ -687,7 +687,10 @@ Na sequência aparecem **VCD & DVD**, com aproximadamente **R$ 5,69 milhões**, 
 
 Os resultados demonstram concentração relevante do faturamento em determinadas categorias.
 
-📊 **GRÁFICO AQUI — Faturamento por Categoria**
+<img width="990" height="400" alt="image" src="https://github.com/user-attachments/assets/915c9dd0-273e-4991-804a-d94abb422e69" />
+
+
+Faturamento por Categoria
 
 ---
 
@@ -744,7 +747,10 @@ A **América do Norte** concentra pouco mais de **50%** do total de unidades ven
 
 Os resultados demonstram uma distribuição geográfica desigual, com predominância da América do Norte.
 
-📊 **GRÁFICO AQUI — Participação das Vendas por Continente**
+<img width="1055" height="400" alt="image" src="https://github.com/user-attachments/assets/bba1222b-ba87-4051-bb73-e9473a26bee6" />
+
+
+Participação das Vendas por Continente
 
 ---
 
@@ -788,7 +794,10 @@ Por estar extremamente próximo de zero, o resultado indica ausência de relaç�
 
 O gráfico de dispersão reforça a interpretação, pois as quantidades aparecem distribuídas pelas diferentes faixas de preço sem tendência clara.
 
-📊 **GRÁFICO AQUI — Preço Unitário × Quantidade Vendida**
+<img width="1182" height="400" alt="image" src="https://github.com/user-attachments/assets/172cfc1c-5534-4021-8adf-25b1043216c5" />
+
+
+Preço Unitário × Quantidade Vendida
 
 ---
 
@@ -827,7 +836,10 @@ A consulta produz o ranking dos produtos por faturamento, sendo apresentados os 
 
 Além de responder à pergunta, a consulta demonstra a aplicação prática do relacionamento entre a tabela fato e a dimensão Produto.
 
-📊 **GRÁFICO AQUI — Top 10 Produtos por Faturamento**
+<img width="1182" height="400" alt="image" src="https://github.com/user-attachments/assets/b5094485-7051-47f7-b7cc-cd8f49438683" />
+
+
+Top 10 Produtos por Faturamento
 
 ---
 
@@ -885,7 +897,10 @@ Após esse período observa-se uma tendência geral de redução durante 2018, e
 
 Em **2019**, os valores permanecem inferiores aos observados durante grande parte de 2018.
 
-📊 **GRÁFICO AQUI — Evolução Mensal do Faturamento — 2017 a 2019**
+<img width="1182" height="400" alt="image" src="https://github.com/user-attachments/assets/5f2fbe7e-2f63-4030-9a98-55e6b747b5cc" />
+
+
+Evolução Mensal do Faturamento — 2017 a 2019
 
 ---
 
@@ -938,29 +953,7 @@ De forma geral, este MVP proporcionou a aplicação prática dos principais conc
 
 ---
 
-# 9. Estrutura do Repositório
-
-```text
-MVPED/
-│
-├── README.md
-├── MVP - Engenharia de Dados.ipynb
-├── Vendas.CSV
-│
-└── images/
-    ├── modelo_gold.png
-    ├── tabelas_databricks.png
-    ├── qualidade_dados.png
-    ├── faturamento_categoria.png
-    ├── vendas_continente.png
-    ├── preco_quantidade.png
-    ├── top10_produtos.png
-    └── evolucao_faturamento.png
-```
-
----
-
-# 10. Evidências da Execução
+# 9. Evidências da Execução
 
 As evidências da execução do pipeline e das análises são apresentadas ao longo deste documento por meio de screenshots obtidos diretamente no Databricks.
 
@@ -978,7 +971,7 @@ Foram previstas evidências para:
 
 ---
 
-# 11. Conclusão
+# 10. Conclusão
 
 O MVP demonstrou a construção de um pipeline completo de Engenharia de Dados, desde a ingestão dos dados brutos em formato CSV até sua disponibilização em uma camada analítica estruturada.
 
