@@ -591,11 +591,9 @@ display(
 <img width="226" height="228" alt="image" src="https://github.com/user-attachments/assets/05a8f6d5-6255-4521-b64e-363e90ef30d2" />
 
 
-Tabelas persistidas no Databricks**
+Tabelas persistidas no Databricks
 
-> O ideal é mostrar `bronze_vendas`, `silver_vendas`, `gold_dim_produto`, `gold_dim_tempo`, `gold_dim_localizacao` e `gold_fato_vendas`.
-
-O fluxo completo é:
+O fluxo completo:
 
 ```text
 Vendas.CSV
